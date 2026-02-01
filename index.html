@@ -2,159 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>For You 💖</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Basic reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fff0f5; /* light pink */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .box {
-            width: 90%;
-            max-width: 400px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 1;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-            color: #ff69b4;
-        }
-
-        button {
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            color: white;
-        }
-
-        #yesBtn { background-color: #ff69b4; }
-        #noBtn { background-color: #ff1493; position: relative; }
-
-        .hidden { display: none; }
-
-        .heart {
-            width: 20px;
-            height: 20px;
-            background: red;
-            position: absolute;
-            transform: rotate(-45deg);
-            animation: float 3s linear infinite;
-        }
-
-        .heart::before,
-        .heart::after {
-            content: "";
-            width: 20px;
-            height: 20px;
-            background: red;
-            border-radius: 50%;
-            position: absolute;
-        }
-
-        .heart::before { top: -10px; left: 0; }
-        .heart::after { left: 10px; top: 0; }
-
-        @keyframes float {
-            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
-            100% { transform: translateY(-600px) rotate(-45deg); opacity: 0; }
-        }
-
-        .hearts-container {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-    </style>
+    <title>Be My Valentine 💖</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<div class="hearts-container" id="hearts"></div>
+<div class="container">
+    <div class="card">
 
-<div class="box">
+        <!-- TOP IMAGE -->
+        <img src="{{ url_for('static', filename='images/top.png') }}" class="top-photo">
 
-    <!-- SLIDE 1 -->
-    <div id="slide1">
-        <h2>Will you be my Valentine? 💘</h2>
+        <h1>Will you be my Valentine? 💕</h1>
+
         <div class="buttons">
-            <button id="yesBtn">YES 💕</button>
-            <button id="noBtn">NO 😤</button>
+            <button id="yesBtn">Yes 💖</button>
+            <button id="noBtn">No</button>
         </div>
-    </div>
 
-    <!-- SLIDE 2 -->
-    <div id="slide2" class="hidden">
-        <h2>YAYYYYY 😭💖</h2>
-        <p>I knew you’d say yes mi amor 💞</p>
-        <button id="backBtn">Go Back</button>
     </div>
-
 </div>
 
-<script>
-    const slide1 = document.getElementById("slide1");
-    const slide2 = document.getElementById("slide2");
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const backBtn = document.getElementById("backBtn");
-    const heartsContainer = document.getElementById("hearts");
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
 
-    // YES button
-    yesBtn.addEventListener("click", () => {
-        slide1.classList.add("hidden");
-        slide2.classList.remove("hidden");
-        createHearts();
-        if(navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 400]);
-    });
 
-    // BACK button
-    backBtn.addEventListener("click", () => {
-        slide2.classList.add("hidden");
-        slide1.classList.remove("hidden");
-        heartsContainer.innerHTML = "";
-    });
-
-    // NO button runs away
-    noBtn.addEventListener("mouseover", () => {
-        noBtn.style.position = "absolute";
-        noBtn.style.left = Math.random() * 70 + "%";
-        noBtn.style.top = Math.random() * 70 + "%";
-    });
-
-    // Hearts animation
-    function createHearts() {
-        heartsContainer.innerHTML = "";
-        for(let i=0;i<30;i++){
-            const heart = document.createElement("div");
-            heart.className = "heart";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDelay = Math.random() * 2 + "s";
-            heartsContainer.appendChild(heart);
-        }
-    }
-</script>
-
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
